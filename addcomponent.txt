@@ -1,0 +1,5 @@
+<div class="card">
+    <img src="new-image.jpg" alt="Description">
+    <h3>New Project Name</h3>
+    <p>Describe what you did here.</p>
+</div>
