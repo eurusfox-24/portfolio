@@ -67,31 +67,45 @@ h2 {
     margin: 3rem 0 1.5rem 0;
 }
 
-/* --- THE GRID (IMAGE CONSISTENCY ENGINE) --- */
+/* --- THE GRID SYSTEM --- */
 .grid {
     display: grid;
-    /* This makes sure cards don't shrink too small on PC but stack on mobile */
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
     gap: 25px;
     margin-bottom: 2rem;
+}
+
+/* Projects/Homelab Grid: Always 1 column on PC to show wide rows */
+#projects .grid, #homelab .grid {
+    grid-template-columns: 1fr;
+}
+
+/* Certifications Grid: Multi-column on PC */
+#certifications .grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
 /* --- PROJECT CARDS (PC FIRST) --- */
 .card {
     display: grid;
-    grid-template-columns: 150px 200px 1fr; /* Your 3-column PC layout */
+    /* Fixed widths for Img and Title, variable for Description */
+    grid-template-columns: 150px 200px 1fr; 
     align-items: center; 
     gap: 30px;           
     padding: 20px;
     background: var(--card-bg);
     border: 1px solid var(--border-glow);
+    transition: transform 0.3s;
 }
 
-/* This forces every single image to be the same size */
+.card:hover {
+    transform: translateX(5px);
+    border-color: var(--text-color);
+}
+
 .card img {
     width: 150px;
     height: 100px;
-    object-fit: cover; /* Crops image to fill the box perfectly */
+    object-fit: cover; 
     border: 1px solid var(--accent-color);
     border-radius: 4px;
 }
@@ -109,27 +123,26 @@ h2 {
 
 .cert-card img {
     width: 100%;
-    max-width: 280px;
-    aspect-ratio: 16 / 9; /* Forces all certs into the same shape box */
-    object-fit: contain;  /* Keeps full logo visible */
+    max-width: 250px;
+    aspect-ratio: 16 / 9; 
+    object-fit: contain;  
     background: #000;
     margin-bottom: 15px;
 }
 
-/* --- MOBILE RESPONSIVE (DESKTOP SECOND APPROACH) --- */
+/* --- MOBILE RESPONSIVE --- */
 
 @media (max-width: 850px) {
-    /* Transforms the 3-column card into a vertical stack */
     .card {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Stack columns vertically */
         text-align: center;
         gap: 15px;
     }
 
     .card img {
         width: 100%;
-        max-width: 320px; /* Bigger on mobile for visibility */
-        height: 180px;    /* Uniform height for all project photos */
+        max-width: 320px; 
+        height: 180px;    
         margin: 0 auto;
     }
 
