@@ -1,0 +1,151 @@
+/* --- DARK MODE HACKER THEME --- */
+:root {
+    --bg-color: #0a0a0a;
+    --card-bg: #141414;
+    --text-color: #00FF41; 
+    --accent-color: #008F11;
+    --border-glow: rgba(0, 255, 65, 0.15);
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Courier New', Courier, monospace;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+/* --- HEADER & NAV --- */
+header {
+    padding: 3rem 1.5rem;
+    text-align: center;
+    border-bottom: 2px solid var(--accent-color);
+}
+
+header p {
+    max-width: 800px;
+    margin: 1.5rem auto;
+    font-size: 0.95rem;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 15px;
+    border: 1px solid transparent;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    background: var(--border-glow);
+    border: 1px solid var(--text-color);
+}
+
+.cv-link {
+    border: 1px solid var(--text-color);
+}
+
+/* --- MAIN CONTENT --- */
+main {
+    padding: 2rem 1rem;
+    max-width: 1100px;
+    margin: auto;
+}
+
+h2 {
+    border-left: 5px solid var(--accent-color);
+    padding-left: 15px;
+    margin: 3rem 0 1.5rem 0;
+}
+
+/* --- THE GRID (IMAGE CONSISTENCY ENGINE) --- */
+.grid {
+    display: grid;
+    /* This makes sure cards don't shrink too small on PC but stack on mobile */
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    gap: 25px;
+    margin-bottom: 2rem;
+}
+
+/* --- PROJECT CARDS (PC FIRST) --- */
+.card {
+    display: grid;
+    grid-template-columns: 150px 200px 1fr; /* Your 3-column PC layout */
+    align-items: center; 
+    gap: 30px;           
+    padding: 20px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-glow);
+}
+
+/* This forces every single image to be the same size */
+.card img {
+    width: 150px;
+    height: 100px;
+    object-fit: cover; /* Crops image to fill the box perfectly */
+    border: 1px solid var(--accent-color);
+    border-radius: 4px;
+}
+
+/* --- CERTIFICATION CARDS --- */
+.cert-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-glow);
+}
+
+.cert-card img {
+    width: 100%;
+    max-width: 280px;
+    aspect-ratio: 16 / 9; /* Forces all certs into the same shape box */
+    object-fit: contain;  /* Keeps full logo visible */
+    background: #000;
+    margin-bottom: 15px;
+}
+
+/* --- MOBILE RESPONSIVE (DESKTOP SECOND APPROACH) --- */
+
+@media (max-width: 850px) {
+    /* Transforms the 3-column card into a vertical stack */
+    .card {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 15px;
+    }
+
+    .card img {
+        width: 100%;
+        max-width: 320px; /* Bigger on mobile for visibility */
+        height: 180px;    /* Uniform height for all project photos */
+        margin: 0 auto;
+    }
+
+    header h1 {
+        font-size: 1.4rem;
+    }
+
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    header p {
+        font-size: 0.85rem;
+        text-align: justify;
+    }
+}
